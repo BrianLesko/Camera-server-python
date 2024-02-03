@@ -1,5 +1,4 @@
-# Brian Joseph Lesko 
-# 2/1/24
+# Brian Joseph Lesko        2/1/24      Robotics Automation Engineer III
 # Create a LAN server that hosts a live data feed generated from the host machine 
 # Run the app with streamlit run app.py --server.address 0.0.0.0 --server.port 8501
 # access the app from another device through the host machine's IP address and the port 8501 ip:port
@@ -10,27 +9,28 @@ import time
 import cv2 # pip install opencv-python-headless
 
 camera = cv2.VideoCapture(0)
-#camera.set(cv2.CAP_PROP_BRIGHTNESS, 1)
+# Limit the size and FPS to increase speed
+camera.set(cv2.CAP_PROP_FPS, 30) # FPS
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG')) # compression method
 
 @st.cache_data(max_entries=10, ttl=60)
-def get_frame_1(time):
-    data = np.random.rand(300, 300)
-    return data
-
-@st.cache_data(max_entries=10, ttl=60)
-def get_frame(time):
+def get_frame(time): # we pass time to make sure the cache is updated every call
     global camera
     try: 
         _, frame = camera.read()
-        #frame = cv2.convertScaleAbs(frame, alpha=1, beta=50)
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame = cv2.flip(frame, 1)  # this line flips the image
         return frame
     except:
         return np.zeros((300, 300, 3))
 
 def main():
+    st.set_page_config(layout="wide")
     st.title("Live Camera Feed")
-    image_spot = st.image([])
+    col1, col2, col3 = st.columns([1,9,1])
+    with col2: image_spot = st.image([])
 
     while True:
         data = get_frame(time.time())
