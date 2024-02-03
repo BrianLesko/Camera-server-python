@@ -10,7 +10,7 @@ import time
 import cv2 # pip install opencv-python-headless
 
 camera = cv2.VideoCapture(0)
-camera.set(cv2.CAP_PROP_BRIGHTNESS, 1)
+#camera.set(cv2.CAP_PROP_BRIGHTNESS, 1)
 
 @st.cache_data(max_entries=10, ttl=60)
 def get_frame_1(time):
@@ -22,7 +22,7 @@ def get_frame(time):
     global camera
     try: 
         _, frame = camera.read()
-        frame = cv2.convertScaleAbs(frame, alpha=1, beta=50)
+        #frame = cv2.convertScaleAbs(frame, alpha=1, beta=50)
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return frame
     except:
