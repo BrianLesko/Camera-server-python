@@ -7,7 +7,10 @@
 import streamlit as st
 import numpy as np
 import time
-import cv2
+import cv2 # pip install opencv-python-headless
+
+camera = cv2.VideoCapture(0)
+camera.set(cv2.CAP_PROP_BRIGHTNESS, 1)
 
 @st.cache_data(max_entries=10, ttl=60)
 def get_frame_1(time):
@@ -16,9 +19,8 @@ def get_frame_1(time):
 
 @st.cache_data(max_entries=10, ttl=60)
 def get_frame(time):
+    global camera
     try: 
-        camera = cv2.VideoCapture(0)
-        camera.set(cv2.CAP_PROP_BRIGHTNESS, 1)
         _, frame = camera.read()
         frame = cv2.convertScaleAbs(frame, alpha=1, beta=50)
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -33,6 +35,5 @@ def main():
     while True:
         data = get_frame(time.time())
         image_spot.image(data, use_column_width=True)
-        time.sleep(1) # limit one frame per second maximum
 
 main() 
