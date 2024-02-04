@@ -31,9 +31,9 @@ def main():
     st.title("Live Camera Feed")
     col1, col2, col3 = st.columns([1,8,1])
     with col2: image_spot = st.image([])
-
+    
     while True:
         data = get_frame(time.time())
         image_spot.image(data, use_column_width=True)
-
+        
 main() 
