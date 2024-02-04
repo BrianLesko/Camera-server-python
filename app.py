@@ -10,12 +10,12 @@ import cv2 # pip install opencv-python-headless
 
 camera = cv2.VideoCapture(0)
 # Limit the size and FPS to increase speed
-camera.set(cv2.CAP_PROP_FPS, 30) # FPS
+camera.set(cv2.CAP_PROP_FPS, 24) # FPS
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG')) # compression method
 
-@st.cache_data(max_entries=10, ttl=60)
+@st.cache_data(max_entries=5, ttl=10)
 def get_frame(time): # we pass in time to make sure the cache is updated every call
     global camera
     try: 

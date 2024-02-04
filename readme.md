@@ -15,6 +15,7 @@ The transmission is pretty good after some slight optimization
 This code uses the following libraries:
 - `streamlit`: for building the user interface and HTML web app 
 - `openCV`: for handling the image capture
+- `numpy`: for creating efficient arrays
 
 &nbsp;
 
