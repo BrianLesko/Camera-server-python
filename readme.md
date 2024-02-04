@@ -2,7 +2,7 @@
 # Streamlit Live camera feed
 Broadcast a live camera feed and pick it up from any web browser on a computer connected to the same LAN network.  
 
-This app is quite slow because it relies on streamlit caching to make the camera feed accessible from another session. My next project will rework this for faster transmission. 
+The transmission is pretty good after some slight optimization
 
 &nbsp;
 

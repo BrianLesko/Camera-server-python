@@ -16,7 +16,7 @@ camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG')) # compression method
 
 @st.cache_data(max_entries=10, ttl=60)
-def get_frame(time): # we pass time to make sure the cache is updated every call
+def get_frame(time): # we pass in time to make sure the cache is updated every call
     global camera
     try: 
         _, frame = camera.read()
@@ -29,7 +29,7 @@ def get_frame(time): # we pass time to make sure the cache is updated every call
 def main():
     st.set_page_config(layout="wide")
     st.title("Live Camera Feed")
-    col1, col2, col3 = st.columns([1,9,1])
+    col1, col2, col3 = st.columns([1,8,1])
     with col2: image_spot = st.image([])
 
     while True:
