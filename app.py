@@ -8,7 +8,7 @@ import numpy as np
 import time
 import cv2 # pip install opencv-python-headless
 
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(6)
 # Limit the size and FPS to increase speed
 camera.set(cv2.CAP_PROP_FPS, 24) # FPS
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
