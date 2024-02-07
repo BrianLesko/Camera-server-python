@@ -1,8 +1,8 @@
 
-# Streamlit Live camera feed
-Broadcast a live camera feed and pick it up from any web browser on a computer connected to the same LAN network.  
+# Live Camera feed
+Broadcast a live camera feed and pick it up from any web browser on a computer connected to the same LAN network. This approach uses the web application library streamlit and utilizes the cache data method to store the image data in the HTTP cache. 
 
-The transmission is pretty good after some slight optimization
+The transmission is good enough for real time use. 
 
 &nbsp;
 
